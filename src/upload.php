@@ -21,7 +21,7 @@ $errors = []; // Store all foreseen and unforseen errors here
 
 $dir = $_POST["dir"];
 
-echo $dir;
+echo $dir . "\n";
 
 if ($_FILES['files']) {
     $file_ary = reArrayFiles($_FILES['files']);
@@ -31,7 +31,7 @@ if ($_FILES['files']) {
         $uploadDir = $uploadDirectory . $dir;
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir);
-            echo "$uploadDir created!";
+            echo "$uploadDir created! \n";
         }
         echo $uploadPath;
         $fileName = $file['name'];
@@ -45,16 +45,16 @@ if ($_FILES['files']) {
         // }
 
         if ($fileSize > 200000000) {
-            $errors[] = "This file is more than 200MB. Sorry, it has to be less than or equal to 2MB";
+            $errors[] = "This file is more than 200MB. Sorry, it has to be less than or equal to 200MB \n";
         }
 
         if (empty($errors)) {
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
             if ($didUpload) {
-                echo "The file " . basename($fileName) . " has been uploaded";
+                echo "The file " . basename($fileName) . " has been uploaded \n";
             } else {
-                echo "An error occurred somewhere. Try again or contact the admin";
+                echo "An error occurred somewhere. Try again or contact the admin \n";
             }
         } else {
             foreach ($errors as $error) {
