@@ -38,7 +38,7 @@ if ($_FILES['files']) {
         } else {
             $uploadPath = $uploadDirectory . basename($file['name']);
         }
-        echo $uploadPath;
+        // echo $uploadPath;
         $fileName = $file['name'];
         $fileSize = $file['size'];
         $fileTmpName = $file['tmp_name'];
