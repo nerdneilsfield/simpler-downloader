@@ -19,8 +19,10 @@ if ($text == null) {
         echo "Directory didn't exist! creating!";
         mkdir($dir);
     }
-    exec("wget -nd -p --convert-links --no-check-certificate -P $dir $link", $output);
-    echo "finished";
+    $command = "wget -nd -p --convert-links --no-check-certificate -P \"$dir\"  \"$link\"";
+    exec($command, $output);
+    echo "<p>$link Downloaded!</p>";
+    echo "<p>finished</p>";
     echo implode('<br />', $output);
 } else {
     echo "Wrong url";
