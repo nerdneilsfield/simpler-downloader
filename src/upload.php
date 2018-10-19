@@ -27,7 +27,7 @@ if ($_FILES['files']) {
     $file_ary = reArrayFiles($_FILES['files']);
 
     foreach ($file_ary as $file) {
-        $uploadPath = $uploadDirectory . $dir . basename($file['name']);
+        $uploadPath = $uploadDirectory . $dir . "/" . basename($file['name']);
         $uploadDir = $uploadDirectory . $dir;
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir);
