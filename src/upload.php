@@ -28,6 +28,11 @@ if ($_FILES['files']) {
 
     foreach ($file_ary as $file) {
         $uploadPath = $uploadDirectory . $dir . basename($file['name']);
+        $uploadDir = $uploadDirectory . $dir;
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir);
+            echo "$uploadDir created!";
+        }
         echo $uploadPath;
         $fileName = $file['name'];
         $fileSize = $file['size'];
