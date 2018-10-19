@@ -27,11 +27,16 @@ if ($_FILES['files']) {
     $file_ary = reArrayFiles($_FILES['files']);
 
     foreach ($file_ary as $file) {
-        $uploadPath = $uploadDirectory . $dir . "/" . basename($file['name']);
-        $uploadDir = $uploadDirectory . $dir;
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir);
-            echo "$uploadDir created! \n";
+        if ($dir) {
+            $uploadPath = $uploadDirectory . $dir . "/" . basename($file['name']);
+            $uploadDir = $uploadDirectory . $dir;
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir);
+                echo '<h3 style="color:red;">' . "$uploadDir created! <\h3>";
+                echo "\n";
+            }
+        } else {
+            $uploadPath = $uploadDirectory . basename($file['name']);
         }
         echo $uploadPath;
         $fileName = $file['name'];
@@ -45,20 +50,22 @@ if ($_FILES['files']) {
         // }
 
         if ($fileSize > 200000000) {
-            $errors[] = "This file is more than 200MB. Sorry, it has to be less than or equal to 200MB \n";
+            $errors[] = '<h3 style="color:red;"> This file is more than 200MB. Sorry, it has to be less than or equal to 200MB </h3>';
         }
 
         if (empty($errors)) {
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
             if ($didUpload) {
-                echo "The file " . basename($fileName) . " has been uploaded \n";
+                echo '<h3>The file ' . basename($fileName) . " has been uploaded \n<h3>";
+                echo "\n";
             } else {
-                echo "An error occurred somewhere. Try again or contact the admin \n";
+                echo '<h3 style="color:red;"> An error occurred somewhere. Try again or contact the admin </h3>';
+                echo "\n";
             }
         } else {
             foreach ($errors as $error) {
-                echo $error . "These are the errors" . "\n";
+                echo '<h3 style="color:red;">' . $error . "These are the errors" . "</h3>";
             }
         }
     }
