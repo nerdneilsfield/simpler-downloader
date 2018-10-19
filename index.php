@@ -49,82 +49,72 @@ echo "<p>Reminder <b>" . $reminder . "</b></p>";
               </div>
             </div>
 
-            <!-- <div class="field">
-              <label class="label">Username</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
-              </div>
-              <p class="help is-success">This username is available</p>
-            </div>
-
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-exclamation-triangle"></i>
-                </span>
-              </div>
-              <p class="help is-danger">This email is invalid</p>
-            </div> -->
-
-            <!-- <div class="field">
-              <label class="label">Subject</label>
+            <div class="field is-grouped has-text-centered">
               <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </div>
-              </div>
-            </div> -->
-
-            <!-- <div class="field">
-              <label class="label">Message</label>
-              <div class="control">
-                <textarea class="textarea" placeholder="Textarea"></textarea>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label class="checkbox">
-                  <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label class="radio">
-                  <input type="radio" name="question"> Yes
-                </label>
-                <label class="radio">
-                  <input type="radio" name="question"> No
-                </label>
-              </div>
-            </div> -->
-
-            <div class="field is-grouped">
-              <div class="control">
-                <input type="submit" class="button is-link" ></input>
-              </div>
-              <div class="control">
-                <button class="button is-text">Cancel</button>
+                <input type="submit" class="button is-link" value="Download"></input>
               </div>
             </div>
     </form>
+    <br />
+    <br />
+    <form action="src/upload.php" method="POST" enctype="multipart/form-data">
+      <div class="box has-text-centered">
+      <div class="field is-grouped">
+      <div class="file">
+        <label class="file-label">
+          <input class="file-input" type="file" name="files[]" id="filexx" multiple="multiple">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+        </label>
+      </div>
+              &emsp;
+              <label class="label">Dir</label>
+              <div class="control">
+                <input class="input" type="text" name="dir" placeholder="Text input">
+              </div>
+              &emsp;
+              <div class="control">
+                <input type="submit" class="button is-link" placeholder="Upload" value="Upload"></input>
+              </div>
+        </div>
+        <div class="field">
+          <div class="container is-centered is-boxed has-text-centered">
+            <label class="label">File Lists</label>
+            <ol id="filename">
+            </ol>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      &copyright <strong>Deng Qi</strong>
+    </p>
+  </div>
+</footer>
+  <script>
+    var file = document.getElementById("filexx");
+    file.onchange = function(){
+          var files = file.files;
+          if(files.length > 0)
+          {
+            var fileNames = [];
+            for(var i =0 ; i< files.length; i++){
+              console.log(files[i].name);
+              fileNames.push("<li>" + files[i].name + "</li>");
+            }
+            document.getElementById('filename').innerHTML = fileNames.join("\n");
+          }
+      };
+  </script>
 </body>
 
 </html>

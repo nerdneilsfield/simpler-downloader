@@ -15,6 +15,10 @@ $text = preg_replace(
 if ($text == null) {
     $link = $_POST["link"];
     $dir = $root . $_POST["dir"];
+    if (!file_exists($dir)) {
+        echo "Directory didn't exist! creating!";
+        mkdir($dir);
+    }
     exec("wget -nd -p --convert-links --no-check-certificate -P $dir $link", $output);
     echo "finished";
     echo implode('<br />', $output);
