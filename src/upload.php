@@ -32,7 +32,7 @@ if ($_FILES['files']) {
             $uploadDir = $uploadDirectory . $dir;
             if (!file_exists($uploadDir)) {
                 mkdir($uploadDir);
-                echo '<h3 style="color:red;">' . "$uploadDir created! <\h3>";
+                echo '<h3 style="color:red;">' . "$uploadDir created! </h3>";
                 echo "\n";
             }
         } else {
@@ -57,7 +57,7 @@ if ($_FILES['files']) {
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
             if ($didUpload) {
-                echo '<h3>The file ' . basename($fileName) . " has been uploaded \n<h3>";
+                echo '<h3>The file ' . basename($fileName) . " has been uploaded \n</h3>";
                 echo "\n";
             } else {
                 echo '<h3 style="color:red;"> An error occurred somewhere. Try again or contact the admin </h3>';
